@@ -2,20 +2,9 @@
  * Created by pouriya on 6/7/2016.
  */
 
-pushHiddenElement = function(id){
-    if(!document.getElementById(id)) {
-        var element = document.createElement('ul');
-        element.id = id;
-        /*element.style = 'display: none;' +
-         'visibility: hidden;';*/
-        document.getElementsByTagName('body')[0].appendChild(element);
-    }
-    return document.getElementById(id).id;
-};
 
 document.addEventListener("click", function(e){
     // setup
-    var info = pushHiddenElement("__info__");
     var path;
     if (!e) e = window.event;
     var contextNode = e.target;
@@ -46,9 +35,17 @@ document.addEventListener("click", function(e){
     
     // prompt for name
     var name = prompt("Please enter name", "search");
-    
-    var li = document.createElement('li');
-    li.setAttribute("name", name);
-    li.innerHTML = path;
-    document.getElementById(info).appendChild(li);
+    var pm_url = 'https://127.0.0.1:8000/hamedun/addPath';
+    $.ajax({
+        crossDomain: true,
+        url: pm_url,
+        type: 'GET',
+        dataType: 'jsonp',
+        jsonpCallback: 'callback',
+        data: {
+            name: name,
+            path: path,
+            url: window.location.href
+        }
+    });
 });

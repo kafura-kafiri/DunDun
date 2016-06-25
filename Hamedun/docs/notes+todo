@@ -1,0 +1,20 @@
+add scripts if are absent
+prompt(name)
+search about css selector
+change element listener
+run a webPage on some cookies
+
+body > div.page_wrap > div.im_page_wrap.clearfix > div > div.im_dialogs_col_wrap.noselect > div.im_dialogs_panel > div > input
+
+listener [3 types] > target >
+type 1 : selector(target) > prompt(name) > insertDom();
+type 2 : sames = match(target) > ans = nearest_ans(target, sames) > type 1 + make changes(:nth-of-type(__n__));
+type 3 : type 2 + trim;
+
+type 2, 3 <<-__;
+
+waits [2 types] > cssSelector
+type 1 : selenium wait o cssSelector
+type 2 : [2 type] one step back
+    type 1 : log(element) > yield > log(element) > isChange <- elem.getAttr['outerHtml'] != elem.getAttr['outerHtml']
+    type 2 : setUp for a motionObserver > yield > selenium wait o cssSelector
